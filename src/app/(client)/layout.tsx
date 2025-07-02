@@ -5,6 +5,8 @@ import { ModeToggle } from "@/components/toggle-theme";
 import EcommerceNavbar from "@/components/client/navbar";
 import HeroSlider from "@/components/client/slider";
 import Footer from "@/components/client/footer";
+import CategorySection from "@/components/client/product_main";
+import ProductShowcase from "@/components/client/product_main";
 
 export default function ClientLayout({
   children,
@@ -15,7 +17,9 @@ export default function ClientLayout({
     <>
       <EcommerceNavbar />
       <HeroSlider />
+      <ProductShowcase />
       <Footer />
+
       {children}
     </>
   );
