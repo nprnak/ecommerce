@@ -15,7 +15,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/images/hero-slide-2.jpg",
+    image: "/images/slider2.jpg",
     title: "Summer Sale",
     subtitle: "Up to 50% off on selected items",
     buttonText: "Explore Deals",
@@ -23,7 +23,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/images/hero-slide-3.jpg",
+    image: "/images/slider3.jpg",
     title: "Premium Dresses",
     subtitle: "Elegant designs for every occasion",
     buttonText: "View Collection",

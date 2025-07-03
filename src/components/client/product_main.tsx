@@ -1,20 +1,23 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 const ProductShowcase = () => {
   const categories = [
     {
       id: 1,
       title: "Dress Forms",
-      image: "/api/placeholder/300/300",
+      slug: "dress-forms",
+      image: "/images/happy new year.png",
       description: "Professional dress forms for fashion design and tailoring",
       buttonText: "SHOP NOW",
     },
     {
       id: 2,
       title: "Sewing Baskets & Storage",
-      image: "/api/placeholder/300/300",
+      slug: "sewing-baskets",
+      image: "/images/sewing.jpg",
       description:
         "Organize your sewing supplies with beautiful storage solutions",
       buttonText: "SHOP NOW",
@@ -22,14 +25,16 @@ const ProductShowcase = () => {
     {
       id: 3,
       title: "Elastics",
-      image: "/api/placeholder/300/300",
+      slug: "dress-forms",
+      image: "/images/elastic.jpg",
       description: "High-quality elastic bands for all your sewing projects",
       buttonText: "SHOP NOW",
     },
     {
       id: 4,
       title: "Knitting Needles",
-      image: "/api/placeholder/300/300",
+      slug: "dress-forms",
+      image: "/images/needle.jpg",
       description: "Premium knitting needles for all skill levels",
       buttonText: "SHOP NOW",
     },
@@ -78,10 +83,11 @@ const ProductShowcase = () => {
                   <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {category.title}
                   </h3>
-
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                    {category.buttonText}
-                  </Button>
+                  <Link href={`/products/${category.slug}`}>
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                      {category.buttonText}
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -100,12 +106,14 @@ const ProductShowcase = () => {
               solutions, we have everything you need to bring your creative
               vision to life.
             </p>
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-medium py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              View All Products
-            </Button>
+            <Link href="/products">
+              <Button
+                size="lg"
+                className="cursor-pointer bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-medium py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                View All Products
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

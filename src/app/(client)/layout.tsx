@@ -16,11 +16,8 @@ export default function ClientLayout({
   return (
     <>
       <EcommerceNavbar />
-      <HeroSlider />
-      <ProductShowcase />
-      <Footer />
-
       {children}
+      <Footer />
     </>
   );
 }
