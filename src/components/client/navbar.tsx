@@ -185,8 +185,8 @@ export default function EcommerceNavbar(): React.JSX.Element {
       <div className="bg-slate-800 text-white py-2 relative">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <h1 className="text-center text-sm md:text-base font-medium flex-1">
-            Women's Clothing Store In Kathmandu - Shop The Best Ladies Dress In
-            Nepal
+            Women&apos;s Clothing Store In Kathmandu - Shop The Best Ladies
+            Dress In Nepal
           </h1>
           <div className="flex items-center space-x-4">
             {/* Account dropdown in banner */}
@@ -272,7 +272,7 @@ export default function EcommerceNavbar(): React.JSX.Element {
                             <div className="grid grid-cols-3 gap-6">
                               {categorySubcategories[category.key].map(
                                 (item: string, itemIndex: number) => (
-                                  <NavigationMenuLink key={item} asChild>
+                                  <NavigationMenuLink key={itemIndex} asChild>
                                     <Link
                                       href={`${category.href}/${item
                                         .toLowerCase()
@@ -462,7 +462,7 @@ export default function EcommerceNavbar(): React.JSX.Element {
                                     {categorySubcategories[category.key].map(
                                       (item: string, itemIndex: number) => (
                                         <Link
-                                          key={item}
+                                          key={itemIndex}
                                           href={`${category.href}/${item
                                             .toLowerCase()
                                             .replace(/\s+/g, "-")

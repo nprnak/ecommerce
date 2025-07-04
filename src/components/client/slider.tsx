@@ -68,7 +68,7 @@ export default function HeroSlider() {
         className="flex transition-transform duration-700 ease-in-out h-full"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {slides.map((slide, index) => (
+        {slides.map((slide) => (
           <div
             key={slide.id}
             className="relative min-w-full h-full flex items-center justify-center"

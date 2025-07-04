@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 
 const ProductShowcase = () => {
   const categories = [
@@ -62,7 +63,7 @@ const ProductShowcase = () => {
                 {/* Image Container */}
                 <div className="relative overflow-hidden aspect-square">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <img
+                  <Image
                     src={category.image}
                     alt={category.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

@@ -9,6 +9,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
+import Image from "next/image";
 
 const ProductPage = () => {
   const [selectedVariant, setSelectedVariant] = useState(0);
@@ -59,7 +60,7 @@ const ProductPage = () => {
           <div className="space-y-4">
             {/* Main Image */}
             <div className="relative aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden group">
-              <img
+              <Image
                 src={productImages[currentImageIndex]}
                 alt="Floral Sheer Button-Down Shirt"
                 className="w-full h-full object-cover"
@@ -93,7 +94,7 @@ const ProductPage = () => {
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <img
+                  <Image
                     src={image}
                     alt={`Product view ${index + 1}`}
                     className="w-full h-full object-cover"
@@ -186,7 +187,7 @@ const ProductPage = () => {
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
-                    <img
+                    <Image
                       src={variant.image}
                       alt={variant.name}
                       className="w-full h-full object-cover"

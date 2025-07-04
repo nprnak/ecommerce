@@ -15,6 +15,7 @@ import {
   Check,
   Zap,
 } from "lucide-react";
+import Image from "next/image";
 
 const ProductPage = () => {
   const [selectedVariant, setSelectedVariant] = useState(0);
@@ -91,7 +92,7 @@ const ProductPage = () => {
           <div className="space-y-4">
             {/* Main Image */}
             <div className="relative aspect-[4/5] bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden group">
-              <img
+              <Image
                 src={productImages[currentImageIndex]}
                 alt="Floral Sheer Button-Down Shirt"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -145,7 +146,7 @@ const ProductPage = () => {
                       : "border-slate-200 dark:border-slate-700 hover:border-blue-500/50"
                   }`}
                 >
-                  <img
+                  <Image
                     src={image}
                     alt={`Product view ${index + 1}`}
                     className="w-full h-full object-cover"
@@ -387,7 +388,7 @@ const ProductPage = () => {
                   Category:
                 </span>
                 <span className="font-medium text-slate-900 dark:text-white">
-                  Women's Clothing
+                  Women&aops;s Clothing
                 </span>
               </div>
               <div className="flex items-center justify-between text-sm">
