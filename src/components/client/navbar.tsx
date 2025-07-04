@@ -31,7 +31,30 @@ import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModeToggle } from "../toggle-theme";
 
-const categorySubcategories = {
+// Type definitions
+interface CategorySubcategories {
+  tops: string[];
+  bottoms: string[];
+  dresses: string[];
+  outerwears: string[];
+  shoes: string[];
+  bags: string[];
+  "active-wear": string[];
+  men: string[];
+}
+
+interface MainCategory {
+  name: string;
+  href: string;
+  hasDropdown: boolean;
+  key: keyof CategorySubcategories;
+}
+
+interface ExpandedCategories {
+  [key: string]: boolean;
+}
+
+const categorySubcategories: CategorySubcategories = {
   tops: [
     "Shirts",
     "Silk Tops",
@@ -122,7 +145,7 @@ const categorySubcategories = {
   ],
 };
 
-const mainCategories = [
+const mainCategories: MainCategory[] = [
   { name: "Tops", href: "/tops", hasDropdown: true, key: "tops" },
   { name: "Bottoms", href: "/bottoms", hasDropdown: true, key: "bottoms" },
   { name: "Dresses", href: "/dresses", hasDropdown: true, key: "dresses" },
@@ -143,12 +166,13 @@ const mainCategories = [
   { name: "Men", href: "/men", hasDropdown: true, key: "men" },
 ];
 
-export default function EcommerceNavbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState({});
-  const cartItemCount = 0; // This would come from your cart state
+export default function EcommerceNavbar(): React.JSX.Element {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [expandedCategories, setExpandedCategories] =
+    useState<ExpandedCategories>({});
+  const cartItemCount: number = 0; // This would come from your cart state
 
-  const toggleCategory = (categoryKey) => {
+  const toggleCategory = (categoryKey: string): void => {
     setExpandedCategories((prev) => ({
       ...prev,
       [categoryKey]: !prev[categoryKey],
@@ -198,10 +222,10 @@ export default function EcommerceNavbar() {
       </div>
 
       {/* Main navigation */}
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="container px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center shrink-0">
             <div className="text-2xl font-bold text-foreground">EVE WOMENS</div>
           </Link>
 
@@ -209,7 +233,7 @@ export default function EcommerceNavbar() {
           <div className="hidden lg:flex items-center space-x-2">
             <NavigationMenu>
               <NavigationMenuList className="space-x-1">
-                {mainCategories.map((category, index) => (
+                {mainCategories.map((category: MainCategory, index: number) => (
                   <NavigationMenuItem key={category.name}>
                     {category.hasDropdown ? (
                       <>
@@ -247,7 +271,7 @@ export default function EcommerceNavbar() {
                             </div>
                             <div className="grid grid-cols-3 gap-6">
                               {categorySubcategories[category.key].map(
-                                (item, itemIndex) => (
+                                (item: string, itemIndex: number) => (
                                   <NavigationMenuLink key={item} asChild>
                                     <Link
                                       href={`${category.href}/${item
@@ -382,85 +406,87 @@ export default function EcommerceNavbar() {
 
                   {/* Mobile Categories */}
                   <div className="flex-1 p-4 space-y-2">
-                    {mainCategories.map((category, index) => (
-                      <div key={category.name} className="group">
-                        {/* Category Header */}
-                        <div className="flex items-center justify-between bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
-                          <Link
-                            href={category.href}
-                            className="flex-1 p-4 text-base font-medium hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 transition-all duration-200"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            <div className="flex items-center space-x-3">
-                              <div
-                                className={`w-2 h-8 rounded-full bg-gradient-to-b ${
-                                  index % 4 === 0
-                                    ? "from-pink-500 to-rose-500"
-                                    : index % 4 === 1
-                                    ? "from-purple-500 to-indigo-500"
-                                    : index % 4 === 2
-                                    ? "from-blue-500 to-cyan-500"
-                                    : "from-emerald-500 to-teal-500"
-                                }`}
-                              />
-                              <span className="text-gray-900 dark:text-gray-100">
-                                {category.name}
-                              </span>
-                            </div>
-                          </Link>
-                          {category.hasDropdown && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => toggleCategory(category.key)}
-                              className="p-4 h-auto hover:bg-pink-50 dark:hover:bg-pink-900/20 transition-colors"
+                    {mainCategories.map(
+                      (category: MainCategory, index: number) => (
+                        <div key={category.name} className="group">
+                          {/* Category Header */}
+                          <div className="flex items-center justify-between bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+                            <Link
+                              href={category.href}
+                              className="flex-1 p-4 text-base font-medium hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 transition-all duration-200"
+                              onClick={() => setIsMobileMenuOpen(false)}
                             >
-                              <div
-                                className={`transform transition-transform duration-200 ${
-                                  expandedCategories[category.key]
-                                    ? "rotate-90"
-                                    : ""
-                                }`}
-                              >
-                                <ChevronRight className="h-4 w-4 text-pink-500" />
+                              <div className="flex items-center space-x-3">
+                                <div
+                                  className={`w-2 h-8 rounded-full bg-gradient-to-b ${
+                                    index % 4 === 0
+                                      ? "from-pink-500 to-rose-500"
+                                      : index % 4 === 1
+                                      ? "from-purple-500 to-indigo-500"
+                                      : index % 4 === 2
+                                      ? "from-blue-500 to-cyan-500"
+                                      : "from-emerald-500 to-teal-500"
+                                  }`}
+                                />
+                                <span className="text-gray-900 dark:text-gray-100">
+                                  {category.name}
+                                </span>
                               </div>
-                            </Button>
-                          )}
-                        </div>
+                            </Link>
+                            {category.hasDropdown && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => toggleCategory(category.key)}
+                                className="p-4 h-auto hover:bg-pink-50 dark:hover:bg-pink-900/20 transition-colors"
+                              >
+                                <div
+                                  className={`transform transition-transform duration-200 ${
+                                    expandedCategories[category.key]
+                                      ? "rotate-90"
+                                      : ""
+                                  }`}
+                                >
+                                  <ChevronRight className="h-4 w-4 text-pink-500" />
+                                </div>
+                              </Button>
+                            )}
+                          </div>
 
-                        {/* Collapsible Subcategories */}
-                        {category.hasDropdown &&
-                          expandedCategories[category.key] && (
-                            <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-300">
-                              <div className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/10 dark:to-purple-900/10 rounded-xl p-3">
-                                <div className="grid grid-cols-1 gap-1">
-                                  {categorySubcategories[category.key].map(
-                                    (item, itemIndex) => (
-                                      <Link
-                                        key={item}
-                                        href={`${category.href}/${item
-                                          .toLowerCase()
-                                          .replace(/\s+/g, "-")
-                                          .replace("&", "and")
-                                          .replace("'", "")}`}
-                                        className="block p-3 text-sm text-gray-600 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all duration-200 hover:shadow-sm hover:translate-x-1"
-                                        onClick={() =>
-                                          setIsMobileMenuOpen(false)
-                                        }
-                                      >
-                                        <div className="flex items-center space-x-2">
-                                          <div className="w-1.5 h-1.5 bg-pink-400 rounded-full opacity-60" />
-                                          <span>{item}</span>
-                                        </div>
-                                      </Link>
-                                    )
-                                  )}
+                          {/* Collapsible Subcategories */}
+                          {category.hasDropdown &&
+                            expandedCategories[category.key] && (
+                              <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-300">
+                                <div className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/10 dark:to-purple-900/10 rounded-xl p-3">
+                                  <div className="grid grid-cols-1 gap-1">
+                                    {categorySubcategories[category.key].map(
+                                      (item: string, itemIndex: number) => (
+                                        <Link
+                                          key={item}
+                                          href={`${category.href}/${item
+                                            .toLowerCase()
+                                            .replace(/\s+/g, "-")
+                                            .replace("&", "and")
+                                            .replace("'", "")}`}
+                                          className="block p-3 text-sm text-gray-600 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-all duration-200 hover:shadow-sm hover:translate-x-1"
+                                          onClick={() =>
+                                            setIsMobileMenuOpen(false)
+                                          }
+                                        >
+                                          <div className="flex items-center space-x-2">
+                                            <div className="w-1.5 h-1.5 bg-pink-400 rounded-full opacity-60" />
+                                            <span>{item}</span>
+                                          </div>
+                                        </Link>
+                                      )
+                                    )}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          )}
-                      </div>
-                    ))}
+                            )}
+                        </div>
+                      )
+                    )}
                   </div>
 
                   {/* Bottom Action Buttons */}
