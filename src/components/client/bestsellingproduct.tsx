@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Heart, Eye, ShoppingCart, Star } from "lucide-react";
+import { Heart, Eye, Star } from "lucide-react";
 
 interface Product {
   id: number;
