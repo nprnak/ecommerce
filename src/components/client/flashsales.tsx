@@ -128,6 +128,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Image
             src={product.image}
             alt={product.name}
+            width={400}
+            height={400}
             className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
           />
         </div>

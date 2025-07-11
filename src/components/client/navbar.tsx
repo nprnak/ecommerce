@@ -101,7 +101,10 @@ const BannerCarousel = () => {
             <Image
               src={image.url}
               alt={image.alt}
+              width={800}
+              height={400}
               className="w-full h-full object-cover"
+              priority={index === 0}
             />
           </div>
         ))}
