@@ -56,7 +56,7 @@ const BestSellingProducts: React.FC = () => {
       rating: 4.7,
       reviews: 65,
       image:
-        "https://images.unsplash.com/photo-1591238371984-9c98597c8795?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop",
       category: "Electronics",
       badge: "This Month",
     },
@@ -155,7 +155,7 @@ const BestSellingProducts: React.FC = () => {
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset- bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                   <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <button
                       onClick={() => toggleFavorite(product.id)}
